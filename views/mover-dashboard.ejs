@@ -1,0 +1,275 @@
+<!-- 
+ * Client Functionality
+ * 
+ * Functionality for the client entity
+ * 
+ * 1. Sign Up for a new account
+ * 2. Log In to an existing account
+ * 3. Log Out of an account
+ * 4. View account details
+ * 5. View a list of all relocation service providers in a specific location
+ * 6. Book a relocation service provider
+ * 7. Cancel a booking
+ * 8. View a list of all bookings
+ * 9. Rate a relocation service provider
+ 
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relocator Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><%= user.first_name %></h1>
+                <p><%= user.email %></p>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li><a href="#" class="active sidebar-link"data-target="dashboard">Dashboard</a></li>
+                    <li><a href="#" class="sidebar-link"data-target="profile">Profile</a></li>
+                    <li><a href="#" class="sidebar-link"data-target="company">Company</a></li>
+                    <li><a href="#" class="sidebar-link"data-target="services">Services</a></li>
+                    <li><a href="#" class="sidebar-link"data-target="bookings">Bookings</a></li>
+                    
+                    <li><a href="/app/mover/logout">Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+        <div class="view-container">
+            <div class="display-container" id="dashboard" style="display: block;">
+                <div class="title-box">
+                    <h1>Home</h1>
+                    <h2>Welcome Back <%= user.first_name %>!</h2>
+                </div>
+                <hr>
+                <h2>Account Summary</h2>
+                <div class="info">
+                    <p><span>Name: </span><%= user.first_name %> <%= user.last_name %></p>
+                </div>
+                <div class="info">
+                    <p><span>Email: </span><%= user.email %></p>
+                </div>
+                <div class="info">
+                    <p><span>Phone: </span><%= user.phone_number %></p>
+                </div>
+                <div class="info">
+                    <p><span>Date Joined: </span><%= user.created_at %></p>
+                </div>
+                <hr>
+                <h2>Company Summary</h2>
+                <div class="info">
+                    <p><span>Company Name: </span><%= user.company_name || 'Null' %></p>
+                </div>
+                <div class="info">
+                    <p><span>Company Address: </span><%= user.company_address || 'Null' %></p>
+                </div>
+                <div class="info">
+                    <p><span>License Number: </span><%= user.license_number || 'Null' %></p>
+                </div>
+                <hr>
+                <h2>Services Offered</h2>
+                <div class="services-offered" data-id="<%= user.id %>"></div>
+                <hr>
+                <h2>Upcoming Relocations</h2>
+                <div class="upcoming-relocations"></div>
+                <hr>
+                <h2>Support</h2>
+                <p>For any inquiries, please contact us at <a href="mailto:admin@gmail.com">admin@gmail.com</a></p>
+            </div>
+            <div class="display-container" id="profile">
+                <div class="title-box">
+                    <h1>Profile</h1>
+                    <h2>Update profile infomration</h2>
+                </div>
+                <hr>
+                <form action="http://localhost:3000/app/mover/update/<%= user.id %>" method="post" id="update-profile-form">
+                    <div class="input-box">
+                        <label for="first_name">First Name</label>
+                        <input 
+                            type="text" 
+                            name="first_name" 
+                            id="first_name" 
+                            placeholder="John" 
+                            value="<%= user.first_name %>"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <label for="last_name">Last Name</label>
+                        <input 
+                            type="text" 
+                            name="last_name" 
+                            id="last_name" 
+                            placeholder="Doe" 
+                            value="<%= user.last_name %>"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="someone@company.com" 
+                            value="<%= user.email %>"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <label for="phone">Phone</label>
+                        <input 
+                            type="text"    
+                            name="phone" 
+                            id="phone" 
+                            placeholder="+123 456 7890" 
+                            value="<%= user.phone_number %>"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            id="password" 
+                            placeholder="********"
+                            required>
+                    </div>
+                    <input type="hidden" value="<%= user.id %>" id="user_id" name="user_id">
+                    <button class="btn update">Submit</button>
+                </form>
+            </div>
+            <div class="display-container" id="company">
+                <div class="title-box">
+                    <h1>Company</h1>
+                    <h2>Update Company Information</h2>
+                </div>
+                <hr>
+                <form action="http://localhost:3000/app/mover/company/update/<%= user.id %>" method="post" id="update-company-form">
+                    <div class="input-box">
+                        <label for="company_name">Company Name</label>
+                        <input 
+                            type="text" 
+                            name="company_name" 
+                            id="company_name" 
+                            placeholder="XYZ Movers" 
+                            value="<%= user.company_name %>"
+                            required
+                            >
+                    </div>
+                    <div class="input-box">
+                        <label for="company_address">Company Address</label>
+                        <input 
+                            type="text" 
+                            name="company_address" 
+                            id="company_address" 
+                            placeholder="123 Main Street" 
+                            value="<%= user.company_address %>"
+                            required
+                            >
+                    </div>
+                    <div class="input-box">
+                        <label for="license">License Number</label>
+                        <input 
+                            type="text" 
+                            name="license" 
+                            id="license" 
+                            placeholder="123456" 
+                            value="<%= user.license_number %>"
+                            required
+                            >
+                    </div>
+                    <div class="input-box">
+                        <select name="car_type" id="car_type" required>
+                            <option value="null" disabled selected>-- Please Select an Option -- </option>
+                            <option value="SUV" <%= user.car_type === 'SUV' ? 'selected' : '' %>>SUV</option>
+                            <option value="Truck" <%= user.car_type === 'Truck' ? 'selected' : '' %>>Truck</option>
+                            <option value="Van" <%= user.car_type === 'Van' ? 'selected' : '' %>>Van</option>
+                            <option value="Other" <%= user.car_type === 'Other' ? 'selected' : '' %>>Other</option>
+                        </select>
+                    </div>
+                    <input type="hidden" value="<%= user.id %>" id="user_id" name="user_id">
+                    <button class="btn update">Submit</button>
+                </form>
+                
+            </div>
+            <div class="display-container" id="services">
+                <div class="title-box">
+                    <h1>Relocation Services</h1>
+                    <h2>Update Your Relocation Services</h2>
+                </div>
+                <hr>
+                <form action="http://localhost:3000/app/mover/services/update/<%= user.id %>" method="post" id="update-services-form">
+            
+                    <div class="service-box">
+                        <h3>Relocation Service</h3>
+                        <div class="input-box">
+                            <label for="service_name">Service Name</label>
+                            <select name="service_name" id="service_name" required>
+                                <option value="" disabled selected>-- Please Select a Service --</option>
+                                <option value="Long Distance">Long Distance</option>
+                                <option value="Short Distance (Local)">Short Distance (Local)</option>
+                                <option value="International Moving">International Moving</option>
+                            </select>
+                        </div>
+            
+                        <div class="input-box">
+                            <label for="description">Description</label>
+                            <textarea 
+                                name="description" 
+                                id="description" 
+                                placeholder="Provide a detailed description of the service"
+                                required
+                                ></textarea>
+                        </div>
+            
+                        <div class="input-box">
+                            <label for="price">Price (KES)</label>
+                            <input 
+                                type="text" 
+                                name="price" 
+                                id="price" 
+                                placeholder="Enter price (e.g., 500 )"
+                                value=""
+                                required
+                                >
+                        </div>
+            
+                        <div class="input-box">
+                            <label for="service_area">Service Area</label>
+                            <input 
+                                type="text" 
+                                name="service_area" 
+                                id="service_area" 
+                                placeholder="Enter service area (e.g., Nairobi)"
+                                value=""
+                                required
+                                >
+                        </div>
+                    </div>
+            
+                    <input type="hidden" value="<%= user.id %>" id="user_id" name="user_id">
+                    <button class="btn update">Submit</button>
+                </form>
+            </div>
+            
+            <div class="display-container" id="bookings">
+                <div class="title-box">
+                    <h1>Bookings</h1>
+                    <hr>
+                    <div class="bookings-container" data-id="<%= user.id %>">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascripts/mover-dashboard.js"></script>
+</body>
+</html>

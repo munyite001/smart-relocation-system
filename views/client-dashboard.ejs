@@ -1,0 +1,157 @@
+<!-- 
+ * Client Functionality
+ * 
+ * Functionality for the client entity
+ * 
+ * 1. Sign Up for a new account
+ * 2. Log In to an existing account
+ * 3. Log Out of an account
+ * 4. View account details
+ * 5. View a list of all relocation service providers in a specific location
+ * 6. Book a relocation service provider
+ * 7. Cancel a booking
+ * 8. View a list of all bookings
+ * 9. Rate a relocation service provider
+ 
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cient Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><%= user.first_name %></h1>
+                <p><%= user.email %></p>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li><a href="#" class="active sidebar-link"data-target="home">Home</a></li>
+                    <li><a href="#" class="sidebar-link"data-target="profile">Profile</a></li>
+                    <li><a href="#" class="sidebar-link"data-target="movers">View Movers</a></li>
+                    <li><a href="#" class="sidebar-link"data-target="bookings">Bookings</a></li>
+                    
+                    <li><a href="/app/client/logout">Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+        <div id="client-id" data-id="<%= user.id %>"></div>
+        <div class="view-container">
+            <div class="display-container" id="home" style="display: block;">
+                <div class="title-box">
+                    <h1>Home</h1>
+                    <h2>Welcome Back <%= user.first_name %>!</h2>
+                </div>
+                <hr>
+                <h2>Account Summary</h2>
+                <div class="info">
+                    <p><span>Name: </span><%= user.first_name %> <%= user.last_name %></p>
+                </div>
+                <div class="info">
+                    <p><span>Email: </span><%= user.email %></p>
+                </div>
+                <div class="info">
+                    <p><span>Phone: </span><%= user.phone_number %></p>
+                </div>
+                <div class="info">
+                    <p><span>Date Joined: </span><%= user.created_at %></p>
+                </div>
+                <hr>
+                <h2>Upcoming Relocation</h2>
+                <div class="upcoming-relocation"> </div>
+                <hr>
+                <h2>Support</h2>
+                <p>For any inquiries, please contact us at <a href="mailto:admin@gmail.com">admin@gmail.com</a></p>
+            </div>
+            <div class="display-container" id="profile">
+                <div class="title-box">
+                    <h1>Profile</h1>
+                    <h2>Update profile infomration</h2>
+                </div>
+                <hr>
+                <form action="http://localhost:3000/app/client/update/<%= user.id %>" method="post" id="update-profile-form">
+                    <div class="input-box">
+                        <label for="first_name">First Name</label>
+                        <input 
+                            type="text" 
+                            name="first_name" 
+                            id="first_name" 
+                            placeholder="John" 
+                            value="<%= user.first_name %>"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <label for="last_name">Last Name</label>
+                        <input 
+                            type="text" 
+                            name="last_name" 
+                            id="last_name" 
+                            placeholder="Doe" 
+                            value="<%= user.last_name %>"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="someone@company.com" 
+                            value="<%= user.email %>"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <label for="phone">Phone</label>
+                        <input 
+                            type="text"    
+                            name="phone" 
+                            id="phone" 
+                            placeholder="+123 456 7890" 
+                            value="<%= user.phone_number %>"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            id="password" 
+                            placeholder="********"
+                            required>
+                    </div>
+                    <input type="hidden" value="<%= user.id %>" id="user_id" name="user_id">
+                    <button class="btn update">Submit</button>
+                </form>
+            </div>
+            <div class="display-container" id="movers">
+                <div class="title-box">
+                    <h1>Relocation Servie Providers</h1>
+                </div>
+                <hr>
+                <div class="movers-container">
+
+                </div>
+                
+            </div>
+            <div class="display-container" id="bookings">
+                <div class="title-box">
+                    <h1>Bookings</h1>
+                    <hr>
+                    <div class="bookings-container" data-id="<%= user.id %>">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascripts/client-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=IM+Fell+Great+Primer+SC&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url(../images/hero-bg.jpeg);
+    background-size: cover;
+    filter: blur(2px);
+    z-index: -2;
+}
+
+header .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+nav {
+    width: 100%;
+    height: 3rem;
+    color: white;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.6px);
+    -webkit-backdrop-filter: blur(6.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+nav .logo p {
+    font-family: "IM Fell Great Primer SC", serif;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.button-6 {
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  justify-content: center;
+  margin: 0;
+  padding: 0.5rem;
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-6:hover,
+.button-6:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.button-6:hover {
+  transform: translateY(-1px);
+}
+
+.button-6:active {
+  background-color: #F0F0F1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+.authentication {
+    position: relative;
+}
+
+.authentication .drop-down {
+    position: absolute;
+    top: 3rem;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.6px);
+    -webkit-backdrop-filter: blur(6.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: none;   
+}
+
+.drop-down button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.authentication:hover .drop-down {
+    display: block;
+}
+
+ul {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 0 30px;
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+ul li {
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    transition: background 0.2s;
+}
+
+nav > ul > li:not(:last-child) {
+    margin-right: 40px;
+}
+
+
+ul li a {
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+ul li ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 13px -12px;
+    padding: 0;
+    border-radius: 5px;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+ul li ul li {
+    width: 100%;
+    border-radius: 0;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+
+ul li:hover {
+    background: white;
+    color: rgb(82, 42, 163);
+}
+
+ul li:hover a {
+    color: rgb(82, 42, 163);
+}
+
+ul li:hover ul {
+    visibility: visible;
+    opacity: 1;
+    box-shadow: 0px 3px 5px 2px #EBECF1;
+}
+
+ul li:hover ul li a {
+    color: #F9F8FD;
+}
+
+@keyframes slide-in {
+    0% {
+        top: -50px;
+    }
+    40% {
+        top: 20px;
+    }
+    70% {
+        top: 10px;
+    }
+    100% {
+        top: 15px;
+    }
+}
+
+
+.login-dropdown {
+    width: 150px;
+}
+
+.sign-up-dropdown {
+    right: 0;
+    width: 200px;
+}
+
+nav .nested-nav-links:hover {
+    background-color: white;
+}
+
+nav .nested-nav-links:hover a {
+    color: rgb(82, 42, 163);
+}
+
+.hero-section {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.hero-section h2 {
+    font-size: 10px;
+    font-weight: 100;
+    opacity: 0.7;
+}
+
+.hero-section h1 {
+    margin: 1rem;
+    max-width: 600px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.hero-section h1 span {
+    color: rgb(82, 42, 163);
+}
+
+.hero-section h1 + p {
+    font-size: 20px;
+}
+
+.hero-section h1 + p span {
+    background-color: white;
+    padding: 0.1rem 0.3rem;
+    border-radius: 5px;
+    color: rgb(82, 42, 163);
+    font-weight: 900;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.row {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+}
+
+.row .cols {
+    width: 50%;
+}
+
+.row .col-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-1 .image-container {
+    width: 70%;
+}
+
+.row .cols .image-container img {
+    width: 100%;
+    border-radius: 25px;
+}
+
+
+.cols .text-content {
+    text-align: center;
+    max-width: 500px;
+    margin: 2rem auto;
+    font-size: 20px;
+}
+hr.line {
+    width: 5rem;
+    height: 5px;
+    background-color: rgb(82, 42, 163);
+    margin: 1rem 0;
+}
+
+.companies {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.companies .company-box {
+    width: 7rem;
+}
+
+.company-box img {
+    width: 100%;
+}
+
+.services {
+    width: 100%;
+    margin: 2rem 0 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.services-container {
+    width: 50%;
+    height: 600px;
+    background-color: rgb(243,254,246);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.services-container h3 {
+    font-size: 16px;
+    font-weight: 900;
+    margin: 1rem 0 0;
+}
+
+.services-container h2 {
+    font-size: 30px;
+    font-weight: 900;
+    margin: 1rem 0;
+    max-width: 300px;
+    text-align: center;
+}
+
+.services-container p {
+    font-size: 16px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.services-offered-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: transparent;
+    position: absolute;
+    top: 25rem;
+}
+
+.services-offered-container .service-box {
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.service-box h4 {
+    font-size: 25px;
+    font-weight: 900;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.service-box p {
+    font-size: 16px;
+    text-align: center;
+    max-width: 200px;
+    margin: 1rem 0;
+}
+
+.service-box img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+footer {
+    width: 100%;
+    background-color: rgb(82, 42, 163);
+    color: white;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul {
+    display: flex;
+    list-style-type: none;
+    margin: 1rem auto;
+}
+
+.booking-form {
+    max-width: 500px;
+    margin: 1rem auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.booking-form .input-box {
+    margin-bottom: 15px;
+}
+
+.booking-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.booking-form input[type="text"],
+.booking-form input[type="date"],
+.booking-form input[type="time"],
+.booking-form select,
+.booking-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+}
+
+.booking-form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.booking-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+}
+
+.booking-form .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.booking-form .btn:hover {
+    background-color: #0056b3;
+}
+
+

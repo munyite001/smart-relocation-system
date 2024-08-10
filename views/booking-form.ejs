@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Booking</title>
+</head>
+<body>
+    <div class="booking-form">
+        <h3>Book <%= mover.first_name %> <%= mover.last_name %></h3>
+        <form action="http://localhost:3000/app/client/<%= client_id %>/booking/<%= mover.provider_id %>" method="post" id="booking-form">
+            <input type="hidden" name="provider_id" value="${mover.id}">
+            
+            <div class="input-box">
+                <label for="service">Service</label>
+                <select name="service" id="service">
+                    <% mover.services.forEach(service => { %>
+                        <option value="<%= service.service_name %>"><%= service.service_name %></option>
+                    <% }) %>                    
+                </select>
+            </div>
+            
+            <div class="input-box">
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date" required>
+            </div>
+            
+            <div class="input-box">
+                <label for="time">Time</label>
+                <input type="time" name="time" id="time" required>
+            </div>
+
+            <div class="input-box">
+                <label for="from_location">From</label>
+                <input type="text" name="from_location" id="from_location" required>
+            </div>
+
+            <div class="input-box">
+                <label for="to_location">To</label>
+                <input type="text" name="to_location" id="to_location" required>
+            </div>
+            
+            <div class="input-box">
+                <label for="additional_info">Additional Information</label>
+                <textarea name="additional_info" id="additional_info"></textarea>
+            </div>
+            
+            <button type="submit" class="btn">Book Now</button>
+        </form>
+    </div>    
+</body>
+</html>

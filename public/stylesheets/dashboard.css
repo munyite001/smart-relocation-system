@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=IM+Fell+Great+Primer+SC&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none !important;
+    color: white;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    padding: 1rem;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: transparent;
+    padding: 30px 0;
+}
+
+.sidebar .sidebar-header {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 1rem;
+}
+
+.sidebar-header h1 {
+    color: white;
+}
+
+.sidebar-header p {
+    color: white;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.view-container {
+    width: calc(100% - 250px);
+    background-color: white;
+    border-radius: 15px;
+    padding: 2rem;
+    overflow-y: scroll;
+}
+
+.sidebar-menu {
+    margin: 3rem 1rem 1rem;
+}
+
+.sidebar-menu ul {
+    list-style-type: none;
+}
+
+.sidebar-menu ul li {
+    margin: 2rem 0;
+}
+
+.sidebar-menu ul li a {
+    text-decoration: none;
+    color: white;
+    opacity: 0.6;
+    font-size: 1.2rem;
+    display: block;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.sidebar-menu ul li a.active {
+    opacity: 1;
+}
+
+
+.view-container .display-container {
+    display: none;
+}
+
+.display-container .title-box h1 {
+    color: #262A41;
+}
+
+.display-container h2 {
+    margin: 1rem 0;
+}
+
+.display-container hr {
+    border: 1px solid #262A41;
+    margin: 1rem 0;
+}
+
+.display-container span {
+    font-weight: 20px;
+    font-weight: 900;
+}
+
+.display-container .info {
+    margin: 1rem 0;
+}
+
+.display-container .info p, .display-container p {
+    font-style: italic;
+}
+
+.input-box {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    padding: 0 5rem 0 0;
+}
+
+.input-box input {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.input-box label {
+    color: rgb(181, 162, 242);
+}
+
+.btn {
+    width: 5rem;
+    padding: 0.5rem;
+    margin: 1rem auto;
+    background-color: rgb(181, 162, 242);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all linear 0.3s;
+}
+
+.btn:hover {
+    background-color: rgb(75, 29, 167);
+}
+
+#car_type {
+    padding: 0.5rem;
+}
+
+#car_type option {
+    padding: 0.5rem;
+}
+
+#services .input-box {
+    margin: 1rem 0;
+}
+
+#services .input-box label {
+    margin: 0.5rem 0;
+}
+
+#services .input-box select {
+    padding: 0.5rem;
+}
+
+#services textarea {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.service-offered {
+    background-color: #f9f9f9; /* Light grey background */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Spacing inside the box */
+    margin-bottom: 20px; /* Space between each service */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.service-offered:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.service-offered h3 {
+    font-size: 20px; /* Service name font size */
+    margin-bottom: 10px; /* Space below the service name */
+    color: #333; /* Darker text color */
+}
+
+.service-offered p {
+    margin: 5px 0; /* Space between paragraphs */
+    color: #555; /* Medium text color */
+    line-height: 1.6; /* Improved readability */
+}
+
+.service-offered .remove {
+    background-color: #e74c3c; /* Red background for the remove button */
+    color: white; /* White text for the button */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px 12px; /* Padding inside the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color change */
+}
+
+.service-offered .remove:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+
+.mover {
+    background-color: #f5f5f5; /* Light grey background */
+    border: 1px solid #ccc; /* Light border for definition */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Space inside the box */
+    margin-bottom: 20px; /* Space between each mover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.mover:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.mover h3 {
+    font-size: 20px; /* Mover's name font size */
+    margin-bottom: 10px; /* Space below the name */
+    color: #333; /* Dark text color */
+}
+
+.mover p {
+    margin: 5px 0; /* Space between paragraphs */
+    color: #555; /* Medium text color */
+    line-height: 1.6; /* Better readability */
+}
+
+.mover .book {
+    background-color: #27ae60; /* Green background for the book button */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px 12px; /* Padding inside the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color change */
+}
+
+.mover .book:hover {
+    background-color: #219150; /* Darker green on hover */
+}
+
+
+.booking {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.booking h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.booking p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+.booking span {
+    font-weight: bold;
+}
+
+.booking-actions {
+    margin-top: 15px;
+}
+
+.booking-actions form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.booking-actions button, .cancel {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.booking-actions .cancel, .cancel {
+    background-color: #e74c3c; /* Red */
+}
+
+.booking-actions .confirm {
+    background-color: #3498db; /* Blue */
+}
+
+.booking-actions .complete {
+    background-color: #2ecc71; /* Green */
+}
+
+.booking-actions button:hover {
+    opacity: 0.9;
+}
+
+.booking-actions .cancel:hover, .cancel:hover {
+    background-color: #c0392b; /* Darker red */
+}
+
+.booking-actions .confirm:hover {
+    background-color: #2980b9; /* Darker blue */
+}
+
+.booking-actions .complete:hover {
+    background-color: #27ae60; /* Darker green */
+}
+
