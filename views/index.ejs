@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>HOME</title>
 </head>
 <body>
@@ -29,11 +30,31 @@
                     </ul>
                 </li>
             </ul>
+            <i class="fas fa-bars open-mobile"></i>
+            <div class="mobile-menu">
+                <i class="fas fa-times close-mobile"></i>
+                <ul class="mobile-auth-links">
+                    <li>
+                        <a href="#">Login</a>
+                        <ul class="">
+                            <li class="nested-nav-links"><a href="/app/client/login">Client Login</a></li>
+                            <li class="nested-nav-links"><a href="/app/mover/login">Mover Login</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">SignUp</a>
+                        <ul class="">
+                            <li class="nested-nav-links"><a href="/app/client/signup">Client SignUp</a></li>
+                            <li class="nested-nav-links"><a href="/app/mover/signup">Mover SignUp</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </nav>
         <section class="hero-section">
             <h2>SMART RELOCATION SYSTEM</h2>
             <h1>MOVING MADE <span>EASY</span> FOR YOUR FAMILY </h1>
-            <p>Sign Up for a <span>free</span> account to discover the best relocation service providers near you</p>
+            <p class="call-to-action">Sign Up for a <span>free</span> account to discover the best relocation service providers near you</p>
         </section>
     </header>
     <section class="content about-us">
@@ -111,5 +132,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="/javascripts/script.js"></script>
 </body>
 </html>
