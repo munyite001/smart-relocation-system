@@ -52,6 +52,9 @@ router.post('/client/:client_id/cancel/:booking_id', clientController.client_can
 //  Rating a Service Provider
 router.post('/client/:client_id/rate/:provider_id', clientController.client_rate_provider_post);
 
+//  Delete a Booking
+router.post('/delete/:booking_id', clientController.client_delete_booking_post);
+
 
 /// MOVER ROUTES  ///
 

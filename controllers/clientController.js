@@ -19,7 +19,7 @@ const { body, validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 
 
-const { createClient, updateClient, getAllMovers, getAllBookings, getSingleMover, create_booking } = require('../db/queries');
+const { createClient, updateClient, getAllMovers, getAllBookings, getSingleMover, create_booking, deleteBooking } = require('../db/queries');
 
 //  Client Sign Up
 exports.client_signup_get = asyncHandler(async (req, res) => {
@@ -212,3 +212,9 @@ exports.client_rate_provider_get = asyncHandler(async (req, res) => {
 exports.client_rate_provider_post = asyncHandler(async (req, res) => {
     res.send("Process rate service provider");
 })
+
+exports.client_delete_booking_post = asyncHandler(async (req, res) => {
+    await deleteBooking(req.params.booking_id);
+
+    res.redirect("/app/client/dashboard/" + req.user.id);
+});

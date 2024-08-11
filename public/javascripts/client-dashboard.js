@@ -77,12 +77,22 @@ function getAllServiceProviders() {
                 moversContainer.innerHTML = data.map(mover => {
                     return `
                     <div class="mover">
-                        <h3>${mover.first_name} ${mover.last_name}</h3>
+                        <h3>${mover.first_name} ${mover.last_name} (${mover.company_name || ''})</h3>
                         <p>${mover.email}</p>
                         <p>${mover.phone_number}</p>
-                        <p><strong>${mover.service_name}</strong></p>
-                        <p>${mover.description}</p>
-                        <p><strong>${mover.price} KES</strong></p>
+                        <div class="mover-services">
+                            ${mover.services.map(service => {
+                                return `
+                                <hr>
+                                <div class="service">
+                                    <p><span>Service Name: </span>${service.service_name}</p>
+                                    <p><span>Description: </span>${service.description}</p>
+                                    <p><span>Price: </span>${service.price}</p>
+                                    <p><span>Service Area: </span>${service.service_area}</p>
+                                </div>
+                                `;
+                            }).join('')}
+                        </div>
                         <button class="book"><a href="http://localhost:3000/app/client/${client_id}/booking/${mover.id}" target="_blank">Book</a></button>
                     </div>
                     `;
@@ -123,6 +133,9 @@ function getAllBookings() {
                             <form action="/app/cancel/${booking.id}" method="post" style="display: inline;">
                                 <button type="submit" class="cancel">Cancel</button>
                             </form>
+                            <form action="/app/delete/${booking.id}" method="post" style="display: inline;">
+                                <button type="submit" class="cancel">Delete</button>
+                            </form>
                         </div>
                     </div>
                     `;
@@ -130,6 +143,7 @@ function getAllBookings() {
 
                 upcomingRelocation.innerHTML = data.map(booking => {
                     return `
+                    <hr>
                     <div class="relocation">
                         <h3><span>Relocation Service</span> ${booking.service_name}</h3>
                         <p><span>Relocator: </span>${booking.provider_first_name} ${booking.provider_last_name}</p>

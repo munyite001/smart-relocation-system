@@ -24,15 +24,26 @@ async function updateClient({ first_name, last_name, email, phone, password, id 
 
 
 //  GET ALL RELOCATION SERVICE PROVIDERS
+// GET ALL RELOCATION SERVICE PROVIDERS
 async function getAllMovers() {
     const query = `
-        SELECT sp.*, rs.service_name, rs.description, rs.price, rs.service_area
+        SELECT sp.*, 
+        json_agg(
+            json_build_object(
+                'service_name', rs.service_name,
+                'description', rs.description,
+                'price', rs.price,
+                'service_area', rs.service_area
+            )
+        ) AS services
         FROM service_providers sp
-        LEFT JOIN relocation_services rs ON sp.id = rs.service_provider_id;
+        LEFT JOIN relocation_services rs ON sp.id = rs.service_provider_id
+        GROUP BY sp.id;
     `;
     const { rows } = await pool.query(query);
     return rows;
 }
+
 
 async function getSingleMover(id) {
     const query = `
@@ -164,6 +175,9 @@ async function update_booking_status({ status, id }) {
     return;
 }
 
+async function deleteBooking(id) {
+    await pool.query('DELETE FROM bookings WHERE id = $1;', [id]);
+}
 
 module.exports = {
 
@@ -179,4 +193,5 @@ module.exports = {
     getSingleMover,
     create_booking,
     update_booking_status,
+    deleteBooking
 }
